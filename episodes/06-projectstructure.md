@@ -3,14 +3,13 @@ title: Project Structure
 teaching: 10
 exercises: 10
 questions:
-- What should my project look like?
+  - What should my project look like?
 objectives:
-- Know some best practices for project structure
+  - Know some best practices for project structure
 keypoints:
-- Projects should be well organised.
-- Subproject CMakeLists are used for tests and more.
+  - Projects should be well organised.
+  - Subproject CMakeLists are used for tests and more.
 ---
-
 
 For this section, we will be looking at the project in [`code/03-structure`][].
 
@@ -80,7 +79,6 @@ Now follow the [`add_subdirectory`][] command to see the src folder, where a lib
 {% include hl_code.html lang="cmake" file="code/03-structure/src/CMakeLists.txt" %}
 </details>
 
-
 The headers are listed along with the sources in the [`add_library`][] command. This would have been
 another way to do it in CMake 3.11+:
 
@@ -110,7 +108,6 @@ using our library was done on the library target, as it should be.
 
 ### Docs and Tests
 
-
 Feel free to look at `docs` and `tests` for their `CMakeLists.txt`.
 
 <details><summary>Click to see docs/CMakeLists.txt</summary>
@@ -123,12 +120,10 @@ Feel free to look at `docs` and `tests` for their `CMakeLists.txt`.
 
 > ## More reading
 >
-> * Based on [Modern CMake basics/structure][]
-{:.checklist}
-
+> - Based on [Modern CMake basics/structure]
+>   {:.checklist}
 
 [Modern CMake basics/structure]: https://cliutils.gitlab.io/modern-cmake/chapters/basics/structure.html
-
 
 [`code/03-structure`]: {{ site.baseurl }}/code/03-structure
 [`CMakeLists.txt`]: {{ site.baseurl }}/code/03-structure/CMakeLists.txt

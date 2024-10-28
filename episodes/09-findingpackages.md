@@ -3,13 +3,13 @@ title: Finding Packages
 teaching: 10
 exercises: 0
 questions:
-- How do I search for packages?
+  - How do I search for packages?
 objectives:
-- Understand FindPackage.cmake
-- Understand PackageConfig.cmake
+  - Understand FindPackage.cmake
+  - Understand PackageConfig.cmake
 keypoints:
-- A FindPackage.cmake file can factor out package discovery for a package you don't own.
-- A PackageConfig.cmake helps others find your package.
+  - A FindPackage.cmake file can factor out package discovery for a package you don't own.
+  - A PackageConfig.cmake helps others find your package.
 ---
 
 You can [search for packages][`find_package`] in
@@ -33,15 +33,16 @@ hide extra text, or `REQUIRED` to cause a missing package to fail the configure 
 > Hinting the installation of software package that is installed outside of a system paths works can also be done with environment variables.
 > In CMake 3.12+, individual packages locations can be hinted by setting their installation root path in [`<PackageName>_ROOT`][].
 >
-> ~~~bash
+> ```bash
 > export HDF5_ROOT=$HOME/software/hdf5-1.12.0
-> ~~~
+> ```
 >
 > Similarly, the variable [`CMAKE_PREFIX_PATH`](https://cmake.org/cmake/help/latest/envvar/CMAKE_PREFIX_PATH.html) can be used to hint a list of installation root paths at once:
 >
-> ~~~bash
+> ```bash
 > export CMAKE_PREFIX_PATH=$HOME/software/hdf5-1.12.0:$HOME/software/boost-1.74.0:$CMAKE_PREFIX_PATH
-> ~~~
+> ```
+
 {: .callout}
 
 ## FindPackage
@@ -52,10 +53,10 @@ here, and some tools to help, there are not many hard-and-fast requirements. A p
 least set the variable `Package_FOUND`. There are 100 or so find packages included in CMake, refer
 to the documentation for each.
 
-* See the [included FindPackages
+- See the [included FindPackages
   here](https://cmake.org/cmake/help/latest/manual/cmake-modules.7.html#find-modules).
-* Many of the packages took a *long* time to add imported targets
-* The old [`FindPythonLibs`][] and [`FindPythonInterp`] are in the process of being replaced by
+- Many of the packages took a _long_ time to add imported targets
+- The old [`FindPythonLibs`][] and [`FindPythonInterp`] are in the process of being replaced by
   [`FindPython`], but you need a very new version of CMake for the new ones; 3.12 minimum, 3.15
   recommended (and 3.18.2+ ideal).
 
@@ -68,7 +69,7 @@ the correct paths and options for a particular install. ROOT is an example of a 
 providing a CONFIG file; another one that is just beginning to is Boost; while CMake includes a
 [`FindBoost`], it has to be updated with each new Boost release, whereas `BoostConfig.cmake` can
 be included with each Boost release (first version in 1.70). One issue with some packages (TBB, for
-example) is that they may provide *optional* CONFIG files, and your packager may not have activated
+example) is that they may provide _optional_ CONFIG files, and your packager may not have activated
 them.
 
 To be clear: If you are a package author, _never_ supply a `Find<package>.cmake`, but instead always

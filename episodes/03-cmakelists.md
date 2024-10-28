@@ -3,17 +3,16 @@ title: Your first CMakeLists.txt file
 teaching: 10
 exercises: 10
 questions:
-- How little can I get away with in my CMakeLists?
+  - How little can I get away with in my CMakeLists?
 objectives:
-- Understand the deep implications of `cmake_minimum_version`
-- Know how to set up a project
-- Know how to make at least one target
+  - Understand the deep implications of `cmake_minimum_version`
+  - Know how to set up a project
+  - Know how to make at least one target
 keypoints:
-- The `cmake_minimum_version` setting has deep implications
-- You need a project line.
-- You should prepare one or more targets to do anything interesting.
+  - The `cmake_minimum_version` setting has deep implications
+  - You need a project line.
+  - You should prepare one or more targets to do anything interesting.
 ---
-
 
 # Writing a CMakeLists
 
@@ -72,28 +71,27 @@ add_executable(myexample simple.cpp)
 3. Whitespace doesn't matter. Be clear/pretty, or use
    [cmake-format](https://cmake-format.readthedocs.io/en/latest/).
 
-
-
 <div class="challenge"><h2>Try it out</h2>
 {%- capture tmp -%}
 Build and run the example code with a `CMakeLists.txt` similar to the one above.
 
-~~~bash
+```bash
 git clone https://github.com/hsf-training/hsf-training-cmake-webpage.git
 cd hsf-training-cmake-webpage/code/00-intro
-~~~
+```
+
 {%- endcapture %}
 {{ tmp | markdownify }}
+
 <div class="solution"><h2>Solution</h2>
 {% include hl_code.html lang="cmake" file="code/00-intro/CMakeLists.txt" %}
 </div>
 </div>
 
-
 > ## More reading
 >
-> * Based on [Modern CMake basics][]
-{:.checklist}
+> - Based on [Modern CMake basics]
+>   {:.checklist}
 
 {% include cmake_links.md %}
 

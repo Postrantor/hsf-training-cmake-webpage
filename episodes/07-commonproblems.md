@@ -3,17 +3,16 @@ title: Common Problems and Solutions
 teaching: 5
 exercises: 0
 questions:
-- What could go possibly wrong?
+  - What could go possibly wrong?
 objectives:
-- Identify some common mistakes
-- Avoid making common mistakes
+  - Identify some common mistakes
+  - Avoid making common mistakes
 keypoints:
-- Setting a CMake version too low.
-- Avoid building inplace.
-- How to select a compiler.
-- How to work with spaces in paths.
+  - Setting a CMake version too low.
+  - Avoid building inplace.
+  - How to select a compiler.
+  - How to work with spaces in paths.
 ---
-
 
 Now let's take a look at some common problems with CMake code and with builds.
 
@@ -56,9 +55,8 @@ mistake.
 
 CMake may pick the wrong compiler on systems with multiple compilers. You can use the environment
 variables [`CC`][] and [`CXX`][] when you first configure, or CMake variables
-[`CMAKE_CXX_COMPILER`][], etc. - but you need to pick the compiler *on the first run*; you can't
+[`CMAKE_CXX_COMPILER`][], etc. - but you need to pick the compiler _on the first run_; you can't
 just reconfigure to get a new compiler.
-
 
 ## 4: Spaces in paths
 

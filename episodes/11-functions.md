@@ -3,12 +3,12 @@ title: Functions in CMake
 teaching: 10
 exercises: 0
 questions:
-- How do I write my own CMake commands?
+  - How do I write my own CMake commands?
 objectives:
-- Know how to make a macro or a function in CMake.
+  - Know how to make a macro or a function in CMake.
 keypoints:
-- Functions and macros allow factorization.
-- CMake has an argument parsing function to help with making functions.
+  - Functions and macros allow factorization.
+  - CMake has an argument parsing function to help with making functions.
 ---
 
 Let's take a look at making a CMake macro or function. The only difference is in scope; a macro does
@@ -33,7 +33,6 @@ all other arguments are set in `ARGN`; `ARGV` holds all arguments, even the list
 Since you name variables with strings, you can set variables using names. This is enough to recreate
 any of the CMake commands. But there's one more thing...
 
-
 ### Parsing arguments
 
 You'll have noticed that there are conventions to calling CMake commands; most commands have
@@ -53,7 +52,7 @@ will be attached to the results. The next three arguments are lists, one with si
 arguments), one with keywords that take one argument each, and one with keywords that take any
 number of arguments. The final argument is `${ARGN}` or `${ARGV}`, without quotes (it will be
 expanded here). If you are in a function and not a macro, you can use `PARSE_ARGV <N>` at the start
-of the call, where N is the number of positional arguments to expect.  This method allows semicolons
+of the call, where N is the number of positional arguments to expect. This method allows semicolons
 in the arguments.
 
 Inside the function, you'll find:
@@ -76,9 +75,9 @@ the cost of more lines of code.
 
 > ## More reading
 >
-> * Based on [Modern CMake basics/functions][]
-{:.checklist}
+> - Based on [Modern CMake basics/functions]
+>   {:.checklist}
 
-[Modern CMake basics/functions]: https://cliutils.gitlab.io/modern-cmake/chapters/basics/functions.html]
+[Modern CMake basics/functions]: https://cliutils.gitlab.io/modern-cmake/chapters/basics/functions.html%5D
 
 {% include links.md %}

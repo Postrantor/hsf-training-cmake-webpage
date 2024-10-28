@@ -3,19 +3,18 @@ title: Working with Targets
 teaching: 10
 exercises: 15
 questions:
-- How do targets work?
+  - How do targets work?
 objectives:
-- Know how to set up targets
-- Understand linking and INTERFACE properties
-- Make INTERFACE targets
+  - Know how to set up targets
+  - Understand linking and INTERFACE properties
+  - Make INTERFACE targets
 keypoints:
-- Libraries and executables are targets.
-- Targets have lots of useful properties.
-- Targets can be linked to other target.
-- You can control what parts of a target get inherited when linking.
-- You can make INTERFACE targets instead of making variables.
+  - Libraries and executables are targets.
+  - Targets have lots of useful properties.
+  - Targets can be linked to other target.
+  - You can control what parts of a target get inherited when linking.
+  - You can make INTERFACE targets instead of making variables.
 ---
-
 
 # Targets
 
@@ -64,15 +63,14 @@ generally breaks things.
 > > This depends on the header. If the header contains C++14, this is a PUBLIC requirement - both
 > > the library and it's users need it. However, if the header is valid in all versions of C++, and
 > > only the implementations inside `my_lib.cpp` require C++14, then this is a `PRIVATE` requirement
+> >
 > > - users don't need to be forced into C++14 mode.
 > >
 > > Maybe you do require users have C++14, but your library can compile with any version of C++.
 > > This would be an `INTERFACE` requirement.
-> {:.solution}
->
+> > {:.solution}
+
 {:.challenge}
-
-
 
 ![Example of Public and Private inheritance](../fig/04-mermaid-libs.svg){:height="500px" }
 
@@ -115,39 +113,39 @@ will compile with at least the highest level specified, unless [`CXX_STANDARD`][
 a nice, clear error if you set [`CXX_STANDARD`][] too low). [`target_compile_features`][] can fill
 [`COMPILE_FEATURES`][] and [`INTERFACE_COMPILE_FEATURES`][], just like directories in example 1.
 
-
 <div class="challenge"><h2>Try it out</h2>
 {%- capture tmp -%}
 Get this repository and go to the example. Try to write a CMakeLists that will correctly build.
 
-~~~bash
+```bash
 git clone https://github.com/hsf-training/hsf-training-cmake-webpage.git
 cd hsf-training-cmake-webpage/code/01-simple
-~~~
+```
 
 The files here are:
-* simple_lib.cpp: Must be compiled with `MYLIB_PRIVATE` and `MYLIB_PUBLIC` defined.
-* simple_example.cpp: Must be compiled with `MYLIB_PUBLIC` defined, but not `MYLIB_PRIVATE`
 
-Use [`target_compile_definitions(<target> <private or public>
-<definition(s)>)`][`target_compile_definitions`] to set the definitions on `simple_lib`.
+- simple_lib.cpp: Must be compiled with `MYLIB_PRIVATE` and `MYLIB_PUBLIC` defined.
+- simple_example.cpp: Must be compiled with `MYLIB_PUBLIC` defined, but not `MYLIB_PRIVATE`
+
+Use [`target_compile_definitions(<target> <private or public> <definition(s)>)`][`target_compile_definitions`] to set the definitions on `simple_lib`.
 {%- endcapture %}
 {{ tmp | markdownify }}
+
 <div class="solution"><h2>Solution</h2>
 {% include hl_code.html lang="cmake" file="code/01-simple/CMakeLists.txt" %}
 </div>
 </div>
 
-
 ### Things you can set on targets
-* [`target_link_libraries`][]: Other targets; can also pass library names directly
-* [`target_include_directories`][]: Include directories
-* [`target_compile_features`][]: The compiler features you need activated, like `cxx_std_11`
-* [`target_compile_definitions`][]: Definitions
-* [`target_compile_options`][]: More general compile flags
-* [`target_link_directories`][]: Don't use, give full paths instead (CMake 3.13+)
-* [`target_link_options`][]: General link flags (CMake 3.13+)
-* [`target_sources`][]: Add source files
+
+- [`target_link_libraries`][]: Other targets; can also pass library names directly
+- [`target_include_directories`][]: Include directories
+- [`target_compile_features`][]: The compiler features you need activated, like `cxx_std_11`
+- [`target_compile_definitions`][]: Definitions
+- [`target_compile_options`][]: More general compile flags
+- [`target_link_directories`][]: Don't use, give full paths instead (CMake 3.13+)
+- [`target_link_options`][]: General link flags (CMake 3.13+)
+- [`target_sources`][]: Add source files
 
 See more [commands here](https://cmake.org/cmake/help/latest/manual/cmake-commands.7.html).
 
@@ -169,7 +167,7 @@ Notice you didn't need to add any source files. Now you can set `INTERFACE` prop
 (since there is no built component).
 
 The second situation is if you have a pre-built library that you want to use. This is called an
-imported library in CMake, and uses the keyword `IMPORTED`.  Imported libraries can also be
+imported library in CMake, and uses the keyword `IMPORTED`. Imported libraries can also be
 `INTERFACE` libraries, they can be built and modified using the same syntax as other libraries
 (starting in CMake 3.11), and they can have `::` in their name. (`ALIAS` libraries, which simply
 rename some other library, are also allowed to have `::`). Most of the time you will get imported
@@ -186,17 +184,14 @@ libraries from other places, and will not be making your own.
 >
 > Therefore, an `IMPORTED` target should represent something that is not directly part of your
 > package.
-{:.callout}
-
-
+> {:.callout}
 
 > ## More reading
 >
-> * Based on [Modern CMake basics][]
-> * Also see [CMake's docs](https://cmake.org/cmake/help/latest/index.html)
-{:.checklist}
+> - Based on [Modern CMake basics]
+> - Also see [CMake's docs](https://cmake.org/cmake/help/latest/index.html)
+>   {:.checklist}
 
 {% include cmake_links.md %}
-
 
 [Modern CMake Basics]: https://cliutils.gitlab.io/modern-cmake/chapters/basics.html

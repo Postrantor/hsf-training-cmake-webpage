@@ -3,18 +3,17 @@ title: Debugging
 teaching: 10
 exercises: 10
 questions:
-- How do I debug everything?
+  - How do I debug everything?
 objectives:
-- Know how to find problems in CMake
-- Know how to set up builds for debugging
+  - Know how to find problems in CMake
+  - Know how to set up builds for debugging
 keypoints:
-- There are several methods for debugging your CMake code.
-- CMake can help you debug and profile your source code.
+  - There are several methods for debugging your CMake code.
+  - CMake can help you debug and profile your source code.
 ---
 
 Debugging is easy with CMake. We'll cover two forms of debugging: debugging your CMake code, and
 debugging your C++ code.
-
 
 # CMake debugging
 
@@ -51,8 +50,7 @@ cmake_print_properties(
 >
 > You can't actually access [`SOURCES`][], since it conflictes with the `SOURCES` keyword in the
 > function.
-{:.callout}
-
+> {:.callout}
 
 ### Tracing a run
 
@@ -62,6 +60,7 @@ echoed to the screen when it is run, letting you follow exactly what is happenin
 options as well, but they tend to bury you in output.
 
 > ## Watching a build
+>
 > Let's try this out. Let's go to the [`code/04-debug`]() folder and configure with trace mode on:
 >
 > ```bash
@@ -70,9 +69,8 @@ options as well, but they tend to bury you in output.
 >
 > Try adding `--trace-expand` too. What is the difference? How about replacing
 > `--trace-source=CMakeLists.txt` with `--trace`?
->
-{:.challenge}
 
+{:.challenge}
 
 ### Find call information
 
@@ -83,7 +81,6 @@ For now, let's watch where CMake searches for `find_...` locations in our curren
 You can print extra find call information during the cmake run to standard error by adding `--debug-find` (CMake 3.17+).
 
 Alternatively, [CMAKE_FIND_DEBUG_MODE](https://cmake.org/cmake/help/latest/variable/CMAKE_FIND_DEBUG_MODE.html) can be set around sections of your `CMakeLists.txt` to limit debug printing to a specific region.
-
 
 # C++ debugging
 
@@ -128,6 +125,7 @@ c                    c
 Keep running continue (`c`). Do you find the problem in the code?
 {% endcapture %}
 {{ tmp | markdownify }}
+
 </div>
 
 > ## Aside: Linking to math
@@ -136,24 +134,24 @@ Keep running continue (`c`). Do you find the problem in the code?
 > which looks like `-lm` when linking with gcc (llvm does not seem to need to link to it). Let's
 > look for the "m" library:
 >
-> ~~~cmake
+> ```cmake
 > # Does -lm work? (notice this is find_library, not find_package)
 > find_library(MATH_LIBRARY m)
-> ~~~
+> ```
 >
 > If it is found, this saves the location of the m library in a variable that we gave it the name
 > of, in our case, `MATH_LIBRARY`. We can add the path (not a target) using the same
 > [`target_link_libraries`][] command. It is very unfortunate that this command happens to accept
 > both targets and raw paths and linker flags, but it's a historical leftover.
 >
-> ~~~cmake
+> ```cmake
 > # If there is a -lm, let's use it
 > if(MATH_LIBRARY)
 >     target_link_libraries(simple_lib PUBLIC ${MATH_LIBRARY})
 > endif()
-> ~~~
-{: .callout}
+> ```
 
+{: .callout}
 
 Note that CMake defaults to an "empty" build type, which is neither optimized nor debug. You can
 [fix this manually](https://cliutils.gitlab.io/modern-cmake/chapters/features.html), or always
@@ -166,12 +164,12 @@ Adopting a convention from Linux, all build types append compiler flags from the
 There are several common utilities that CMake can integrate with to help you with your builds. Here
 are just a few:
 
-* [`CMAKE_CXX_COMPILER_LAUNCHER`][] can set up a compiler launcher, like `ccache`, to speed up your
+- [`CMAKE_CXX_COMPILER_LAUNCHER`][] can set up a compiler launcher, like `ccache`, to speed up your
   builds.
-* [`CMAKE_CXX_CLANG_TIDY`][] can run clang-tidy to help you clean up your code.
-* [`CMAKE_CXX_CPPCHECK`][] for cppcheck.
-* [`CMAKE_CXX_CPPLINT`][] for cpplint.
-* [`CMAKE_CXX_INCLUDE_WHAT_YOU_USE`][] for iwyu.
+- [`CMAKE_CXX_CLANG_TIDY`][] can run clang-tidy to help you clean up your code.
+- [`CMAKE_CXX_CPPCHECK`][] for cppcheck.
+- [`CMAKE_CXX_CPPLINT`][] for cpplint.
+- [`CMAKE_CXX_INCLUDE_WHAT_YOU_USE`][] for iwyu.
 
 You can set these when building if you want.
 

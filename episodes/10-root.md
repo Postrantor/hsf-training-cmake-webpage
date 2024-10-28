@@ -3,11 +3,11 @@ title: ROOT
 teaching: 10
 exercises: 10
 questions:
-- How do I use ROOT?
+  - How do I use ROOT?
 objectives:
-- Use ROOT a couple of different ways
+  - Use ROOT a couple of different ways
 keypoints:
-- ROOT has a CONFIG package you can use to integrate with CMake.
+  - ROOT has a CONFIG package you can use to integrate with CMake.
 ---
 
 [ROOT](https://root.cern/) is a data analysis framework.
@@ -24,7 +24,7 @@ still being worked on. The CONFIG files were added in 6.10, and targets received
 
 ## Example 1: UseROOT
 
-Change to the `code/05a-root` directory.  Run:
+Change to the `code/05a-root` directory. Run:
 
 ```bash
 cmake -S . -B build
@@ -34,8 +34,6 @@ root -b -q -x ../CheckLoad.C
 ```
 
 {% include hl_code.html lang="cmake" file="code/05a-root/CMakeLists.txt" %}
-
-
 
 ## Example 2: Targets
 
